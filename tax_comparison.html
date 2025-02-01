@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Income Tax Calculator</title>
+<style>
+body {
+  font-family: sans-serif;
+}
+#results {
+  margin-top: 20px;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+</style>
+</head>
+<body>
+
+<h1>Income Tax Calculator</h1>
+
+<label for="income">Annual Income:</label>
+<input type="number" id="income" name="income"><br><br>
+
+<button onclick="calculateTax()">Calculate</button>
+
+<div id="results">
+</div>
+
+<script>
+function calculateTax() {
+  const income = parseFloat(document.getElementById("income").value);
+
+  if (isNaN(income) || income < 0) {
+    alert("Please enter a valid income.");
+    return;
+  }
+
+  const oldTax = calculateTaxAmount(income, "old");
+  const newTax = calculateTaxAmount(income, "new");
+  const difference = oldTax - newTax;
+
+  const resultsDiv = document.getElementById("results");
+  resultsDiv.innerHTML = `
+    <p><b>Income:</b> ₹${income.toLocaleString()}</p>
+    <p><b>Old Tax:</b> ₹${oldTax.toLocaleString()}</p>
+    <p><b>New Tax:</b> ₹${newTax.toLocaleString()}</p>
+    <p><b>Difference:</b> ₹${difference.toLocaleString()}</p>
+  `;
+}
+
+function calculateTaxAmount(income, regime) {
+    let tax = 0;
+    if (regime == "old") {
+        if (income <= 300000) {
+            tax = 0;
+        } else if (income <= 700000) {
+            tax = (income - 300000) * 0.10;
+        } else if (income <= 1000000) {
+            tax = 40000 + (income - 700000) * 0.15;
+        } else if (income <= 1200000) {
+            tax = 85000 + (income - 1000000) * 0.20;
+        } else if (income <= 1500000) {
+            tax = 125000 + (income - 1200000) * 0.30;
+        } else {
+            tax = 215000 + (income - 1500000) * 0.30;
+        }
+
+    } else if (regime == "new") {
+        if (income <= 400000) {
+            tax = 0;
+        } else if (income <= 800000) {
+            tax = (income - 400000) * 0.05;
+        } else if (income <= 1200000) {
+            tax = 20000 + (income - 800000) * 0.10;
+        } else if (income <= 1600000) {
+            tax = 60000 + (income - 1200000) * 0.15;
+        } else if (income <= 2000000) {
+            tax = 120000 + (income - 1600000) * 0.20;
+        } else if (income <= 2400000) {
+            tax = 200000 + (income - 2000000) * 0.25;
+        } else {
+            tax = 300000 + (income - 2400000) * 0.30;
+        }
+    }
+    return tax;
+}
+</script>
+
+</body>
+</html>
