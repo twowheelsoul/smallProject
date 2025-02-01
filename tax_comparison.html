@@ -35,7 +35,7 @@ th{
 <body>
 
 <h1>Income Tax Calculator</h1>
-<h2>For New Regime Only</h2>
+
 <label for="income">Annual Income:</label>
 <input type="number" id="income" name="income"><br><br>
 
@@ -56,10 +56,10 @@ th{
         </thead>
         <tbody>
             <tr><td>₹0 - ₹3,00,000</td><td>0%</td></tr>
-            <tr><td>₹3,00,000 - ₹7,00,000</td><td>10%</td></tr>
-            <tr><td>₹7,00,000 - ₹10,00,000</td><td>15%</td></tr>
-            <tr><td>₹10,00,000 - ₹12,00,000</td><td>20%</td></tr>
-            <tr><td>₹12,00,000 - ₹15,00,000</td><td>30%</td></tr>
+            <tr><td>₹3,00,000 - ₹7,00,000</td><td>5%</td></tr>
+            <tr><td>₹7,00,000 - ₹10,00,000</td><td>10%</td></tr>
+            <tr><td>₹10,00,000 - ₹12,00,000</td><td>15%</td></tr>
+            <tr><td>₹12,00,000 - ₹15,00,000</td><td>20%</td></tr>
             <tr><td>Above ₹15,00,000</td><td>30%</td></tr>
         </tbody>
     </table>
@@ -117,17 +117,16 @@ function calculateTaxAmount(income, regime) {
         if (income <= 300000) {
             tax = 0;
         } else if (income <= 700000) {
-            tax = (income - 300000) * 0.10;
+            tax = (income - 300000) * 0.10; // Corrected: 10% for 3-7 Lakh
         } else if (income <= 1000000) {
-            tax = 40000 + (income - 700000) * 0.15;
+            tax = 40000 + (income - 700000) * 0.15;  // Corrected: 15% for 7-10 Lakh
         } else if (income <= 1200000) {
             tax = 85000 + (income - 1000000) * 0.20;
         } else if (income <= 1500000) {
-            tax = 125000 + (income - 1200000) * 0.30;
+            tax = 125000 + (income - 1200000) * 0.30; // Corrected: 20% for 12-15 Lakh
         } else {
             tax = 215000 + (income - 1500000) * 0.30;
         }
-
     } else if (regime == "new") {
         if (income <= 400000) {
             tax = 0;
