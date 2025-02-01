@@ -6,10 +6,23 @@
 body {
   font-family: sans-serif;
 }
-#results {
+#results, #tax-slabs {
   margin-top: 20px;
   border: 1px solid #ccc;
   padding: 10px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+th{
+    background-color: #f2f2f2;
 }
 </style>
 </head>
@@ -22,8 +35,49 @@ body {
 
 <button onclick="calculateTax()">Calculate</button>
 
-<div id="results">
+<div id="results"></div>
+
+<div id="tax-slabs">
+    <h2>Tax Slabs</h2>
+
+    <h3>Old Slab for New Regime</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Income Range</th>
+                <th>Tax Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>₹0 - ₹3,00,000</td><td>0%</td></tr>
+            <tr><td>₹3,00,000 - ₹7,00,000</td><td>10%</td></tr>
+            <tr><td>₹7,00,000 - ₹10,00,000</td><td>15%</td></tr>
+            <tr><td>₹10,00,000 - ₹12,00,000</td><td>20%</td></tr>
+            <tr><td>₹12,00,000 - ₹15,00,000</td><td>30%</td></tr>
+            <tr><td>Above ₹15,00,000</td><td>30%</td></tr>
+        </tbody>
+    </table>
+
+    <h3>New Slab for New Regime</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Income Range</th>
+                <th>Tax Rate</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>₹0 - ₹4,00,000</td><td>0%</td></tr>
+            <tr><td>₹4,00,000 - ₹8,00,000</td><td>5%</td></tr>
+            <tr><td>₹8,00,000 - ₹12,00,000</td><td>10%</td></tr>
+            <tr><td>₹12,00,000 - ₹16,00,000</td><td>15%</td></tr>
+            <tr><td>₹16,00,000 - ₹20,00,000</td><td>20%</td></tr>
+            <tr><td>₹20,00,000 - ₹24,00,000</td><td>25%</td></tr>
+            <tr><td>Above ₹24,00,000</td><td>30%</td></tr>
+        </tbody>
+    </table>
 </div>
+
 
 <script>
 function calculateTax() {
@@ -87,3 +141,5 @@ function calculateTaxAmount(income, regime) {
 
 </body>
 </html>
+
+
