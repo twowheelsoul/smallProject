@@ -24,6 +24,12 @@ th, td {
 th{
     background-color: #f2f2f2;
 }
+.positive {
+  color: green;
+}
+.negative {
+  color: red;
+}
 </style>
 </head>
 <body>
@@ -91,13 +97,17 @@ function calculateTax() {
   const oldTax = calculateTaxAmount(income, "old");
   const newTax = calculateTaxAmount(income, "new");
   const difference = oldTax - newTax;
+  const monthlySavings = difference / 12;
 
   const resultsDiv = document.getElementById("results");
+  const differenceClass = difference > 0 ? "positive" : "negative"; // Determine class
+
   resultsDiv.innerHTML = `
     <p><b>Income:</b> ₹${income.toLocaleString()}</p>
     <p><b>Old Tax:</b> ₹${oldTax.toLocaleString()}</p>
     <p><b>New Tax:</b> ₹${newTax.toLocaleString()}</p>
-    <p><b>Difference:</b> ₹${difference.toLocaleString()}</p>
+    <p><b>Difference:</b> <span class="${differenceClass}">₹${difference.toLocaleString()}</span></p>
+    <p><b>Monthly Savings:</b> ₹${monthlySavings.toLocaleString()}</p> 
   `;
 }
 
