@@ -103,6 +103,7 @@ function calculateTax() {
   const differenceClass = difference > 0 ? "positive" : "negative"; // Determine class
 
   resultsDiv.innerHTML = `
+    <p>*****Computation w/o any deductions*****</p>
     <p><b>Income:</b> ₹${income.toLocaleString()}</p>
     <p><b>Old Tax:</b> ₹${oldTax.toLocaleString()}</p>
     <p><b>New Tax:</b> ₹${newTax.toLocaleString()}</p>
